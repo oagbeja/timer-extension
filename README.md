@@ -48,7 +48,7 @@ Then use a tool like [Extension Reloader](https://chrome.google.com/webstore/det
 - If the conditions are met (e.g., tab is focused), it:
 
   - Shows a Chrome notification.
-  - Plays a ding sound (`/public/alert.mp3`).
+  - Plays a ding sound (`/public/ding.mp3`).
 
 - Data (like scheduled times or days) is stored in IndexedDB using the `idb` library.
 
@@ -58,7 +58,7 @@ Then use a tool like [Extension Reloader](https://chrome.google.com/webstore/det
 
 ```bash
 ├── public/
-│   └── alert.mp3         # Notification sound
+│   └── ding.mp3         # Notification sound
 ├── src/
 │   ├── utils/
 │   │   └── background.ts # Background service worker
@@ -75,8 +75,7 @@ Then use a tool like [Extension Reloader](https://chrome.google.com/webstore/det
 ## 🧩 Permissions Used
 
 - `"notifications"` — to show desktop alerts
-- `"storage"` — to store configuration data
-- `"activeTab"` and `"tabs"` — to check which tab is active
+- `"alarms"` — to set intervals
 
 ---
 
