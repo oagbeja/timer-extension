@@ -31,3 +31,8 @@ export const getAllFormData = async () => {
   const db = await initDB();
   return await db.getAll(STORE_NAME);
 };
+
+export const deleteItem = async (key: string | number) => {
+  const db = await initDB();
+  return await db.delete(STORE_NAME, key);
+};

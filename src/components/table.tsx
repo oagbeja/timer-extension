@@ -5,9 +5,11 @@ import { getAllFormData } from "../utils/db";
 const Table = ({
   reload,
   handleEdit,
+  handleDelete,
 }: {
   reload: boolean;
   handleEdit: Function;
+  handleDelete: Function;
 }) => {
   const [itemData, setItemData] = useState<Record<string, any>[]>([]);
 
@@ -29,11 +31,17 @@ const Table = ({
           {dt.days instanceof Array ? dt.days.join(",") : ""}
         </td>
         <td className='px-4 py-2 border-b'>{dt.date}</td>
-        <td
-          className='px-4 py-2 border-b cursor-pointer'
-          onClick={() => handleEdit(dt)}
-        >
-          Edit
+        <td className='px-4 py-2 border-b '>
+          <a href='#' className='mr-2' onClick={() => handleEdit(dt)}>
+            Edit
+          </a>
+          <a
+            href='#'
+            style={{ color: "orange" }}
+            onClick={() => handleDelete(dt)}
+          >
+            Delete
+          </a>
         </td>
       </tr>
     ));

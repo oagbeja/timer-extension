@@ -14,6 +14,11 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, "index.html"),
+        background: "src/utils/background.ts",
+      },
+      output: {
+        entryFileNames: (chunk) =>
+          chunk.name === "background" ? "background.js" : "[name].js",
       },
     },
     outDir: "dist",
