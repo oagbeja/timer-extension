@@ -1,54 +1,105 @@
-# React + TypeScript + Vite
+````markdown
+# 🔔 Web Alert Extension
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A lightweight Chrome extension that sends notification alerts and plays a sound when a webpage is active — ideal for reminders, alerts, or task tracking directly from your browser.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🔔 Desktop notifications using Chrome's Notification API
+- 🔊 Sound alert playback when the tab is active
+- 📅 Optional scheduling (with support for alarms and specific days)
+- 💾 Persistent storage using IndexedDB (`idb`)
+- 🧩 Built with React, TailwindCSS, and Vite
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 📦 Installation
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+1. Clone or download this repository.
+2. Run the build:
+
+   ```bash
+   npm install
+   npm run build
+   ```
+````
+
+3. Go to `chrome://extensions/` in your browser.
+4. Enable **Developer Mode** (top right).
+5. Click **Load unpacked** and select the `dist` folder.
+
+---
+
+## 🛠️ Development
+
+To run in development mode with hot-reload:
+
+```bash
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Then use a tool like [Extension Reloader](https://chrome.google.com/webstore/detail/extension-reloader/) to auto-refresh the extension.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+## 🧠 How It Works
+
+- The **background service worker** checks the active tab or uses alarms.
+- If the conditions are met (e.g., tab is focused), it:
+
+  - Shows a Chrome notification.
+  - Plays a ding sound (`/public/alert.mp3`).
+
+- Data (like scheduled times or days) is stored in IndexedDB using the `idb` library.
+
+---
+
+## 📁 Project Structure
+
+```bash
+├── public/
+│   └── alert.mp3         # Notification sound
+├── src/
+│   ├── utils/
+│   │   └── background.ts # Background service worker
+│   ├── components/       # React components
+│   ├── App.tsx
+│   └── main.tsx
+├── manifest.json
+├── vite.config.ts
+└── README.md
+```
+
+---
+
+## 🧩 Permissions Used
+
+- `"notifications"` — to show desktop alerts
+- `"storage"` — to store configuration data
+- `"activeTab"` and `"tabs"` — to check which tab is active
+
+---
+
+## 📢 Limitations
+
+- Notifications are auto-dismissed by Chrome after a few seconds.
+- Sound only plays if the user has interacted with the page or tab (due to browser audio policies).
+- Make sure the sound file is in the `public/` directory to be accessible by the extension.
+
+---
+
+## 📃 License
+
+MIT — free to use, modify, and share.
+
+---
+
+## 🙌 Contributions
+
+PRs and suggestions welcome!
+
+```
+
+---
+
 ```
