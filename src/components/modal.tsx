@@ -38,8 +38,8 @@ const Modal = ({ isOpen, setIsOpen, editObj, setEditObj }: IModal) => {
   }, [isOpen]);
 
   return !isOpen ? null : (
-    <div className='fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50'>
-      <div className='bg-white rounded-lg shadow-lg max-w-md w-full text-left p-6 relative'>
+    <div className='fixed  inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50'>
+      <div className=' max-h-[90vh] overflow-auto bg-white rounded-lg shadow-lg max-w-md w-full text-left p-6 relative'>
         <h2 className='text-xl font-semibold mb-4 text-gray-700'>
           {editObj?.id ? `Update Item ${editObj.item}` : "Create New Alert"}
         </h2>

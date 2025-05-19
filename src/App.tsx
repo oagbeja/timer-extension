@@ -16,8 +16,8 @@ function App() {
   };
 
   return (
-    <>
-      <div className='justify-center flex mb-0'>
+    <div className='min-h-[30vh]'>
+      <div className='justify-center flex  mb-0'>
         {/* <a href='#' target='_blank'> */}
         <img src={iconLogo} className='logo' alt='logo' />
         {/* </a> */}
@@ -42,7 +42,7 @@ function App() {
         editObj={editObj}
         setEditObj={setEditObj}
       />
-    </>
+    </div>
   );
 }
 
